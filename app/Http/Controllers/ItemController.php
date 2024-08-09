@@ -30,12 +30,20 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Validate the request
+        // $request->validate([
+        //     'item.name' => 'required|string|max:255',
+        // ]);
+    
+        // Create a new item
         $newItem = new Item;
-        $newItem->name = $request->item["name"];
+        $newItem->name = $request->name;
         $newItem->save();
-        return $newItem;
+    
+        // Return a JSON response with status code 201 (Created)
+        return response()->json($newItem, 201);
     }
+    
 
     /**
      * Display the specified resource.

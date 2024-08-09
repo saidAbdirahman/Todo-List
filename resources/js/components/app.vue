@@ -4,16 +4,32 @@
         <h2 class="title">Todo List</h2>
         <add-item-form/>
     </div>
-    <list-view/>
+    <list-view :items="items"/>
 </div>
 </template>
 <script>
+import axios from 'axios';
+import { ref } from 'vue';
 import addItemForm from './addItemForm.vue'
 import listView from './listView.vue'
 export default {
   components: { addItemForm,listView },
     setup() {
-        
+        const items = ref([]);
+
+       
+        const getlist = () => {
+            axios.get('api/items')
+            .then(response => {
+                items.value = response.data;
+                console.log('taked')
+            })
+            .catch(error => {
+                 console.log(error);
+            })
+        }
+        getlist()
+        return { items,getlist}
     },
 }
 </script>
