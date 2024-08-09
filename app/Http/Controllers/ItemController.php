@@ -71,8 +71,8 @@ class ItemController extends Controller
 
   
     if($existingItem){
-        $existingItem->completed = $request->item['completed']?true:false;
-        $existingItem->completed_at = $request->item['completed']?Carbon::now():null;
+        $existingItem->completed = $request-> completed ?true:false;
+        $existingItem->completed_at = $request-> completed ?Carbon::now():null;
         $existingItem->save();
         // return response()->json(['message' => 'Item updated successfully'], 200);
         return $existingItem;
