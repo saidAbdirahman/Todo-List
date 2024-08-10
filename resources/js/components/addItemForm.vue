@@ -14,7 +14,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 
 export default {
-    setup() {
+    setup({ emit }) {
         const item = ref({
             name: ''
         });
@@ -30,6 +30,7 @@ export default {
             .then(response => {
                 if (response.status === 201) {
                     item.value.name = '';
+                    emit('reloadList');
                     console.log('inserted')
                 }
             })

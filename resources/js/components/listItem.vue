@@ -19,12 +19,25 @@ export default {
             axios.put('api/item/' + this.item.id)
             .then(response =>{
                 if(response.status == 200){
-                    this.$emit('itemchanged')
+                    this.$emit( `itemchanged`)
                 }
             })
             .catch( error => {
                 console.log(error)
             })
+        },
+        removeItem(){
+            axios.delete('api/item/' + this.item.id)
+            .then(response => {
+                if(response.status == 200){
+                    this.$emit(`itemchanged`);
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+                
+            
         }
     },
     setup() {
